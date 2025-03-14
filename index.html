@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Aditi ❤️</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #a18cd1);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(0);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        h1 {
+            color: #e83e8c;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+        }
+        
+        input {
+            width: 80%;
+            padding: 12px;
+            margin: 20px 0;
+            border: 2px solid #a18cd1;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+        
+        input:focus {
+            border-color: #e83e8c;
+            box-shadow: 0 0 15px rgba(232, 62, 140, 0.3);
+        }
+        
+        button {
+            background-color: #e83e8c;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(232, 62, 140, 0.4);
+        }
+        
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 7px 20px rgba(232, 62, 140, 0.6);
+        }
+        
+        p {
+            font-size: 1.5rem;
+            margin: 25px 0;
+            color: #333;
+        }
+        
+        .result {
+            font-weight: bold;
+            color: #e83e8c;
+            font-size: 1.8rem;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #e83e8c;
+            transform: rotate(45deg);
+            animation: heartbeat 1.5s ease infinite;
+            opacity: 0;
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: rotate(45deg) scale(1); }
+            25% { transform: rotate(45deg) scale(1.1); }
+            50% { transform: rotate(45deg) scale(1); }
+            75% { transform: rotate(45deg) scale(1.1); }
+            100% { transform: rotate(45deg) scale(1); }
+        }
+        
+        .heart:before,
+        .heart:after {
+            content: "";
+            width: 30px;
+            height: 30px;
+            background-color: #e83e8c;
+            border-radius: 50%;
+            position: absolute;
+        }
+        
+        .heart:before {
+            top: -15px;
+            left: 0;
+        }
+        
+        .heart:after {
+            top: 0;
+            left: -15px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .follow-up {
+            margin-top: 20px;
+            color: #333;
+            font-size: 1.6rem;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hey Aditi! ✨</h1>
+        
+        <div id="question-section">
+            <p>Who do you love? 💕</p>
+            <input type="text" id="love-answer" placeholder="Type your answer...">
+            <button onclick="checkAnswer()">Submit</button>
+        </div>
+        
+        <div id="result-section" class="hidden">
+            <p id="result" class="result"></p>
+            <p id="follow-up" class="follow-up"></p>
+            <button id="retry-button" class="hidden" onclick="resetForm()">Try Again</button>
+        </div>
+    </div>
+
+    <script>
+        function checkAnswer() {
+            const answer = document.getElementById('love-answer').value.trim().toLowerCase();
+            const resultSection = document.getElementById('result-section');
+            const questionSection = document.getElementById('question-section');
+            const resultText = document.getElementById('result');
+            const followUp = document.getElementById('follow-up');
+            const retryButton = document.getElementById('retry-button');
+            
+            // Hide question section
+            questionSection.style.display = 'none';
+            
+            // Show result section
+            resultSection.classList.remove('hidden');
+            
+            // Check the answer
+            if (answer === 'ishansh' || answer === 'ishansh ') {
+                resultText.textContent = "I love u too ❤️";
+                followUp.textContent = "Who is Aarush? 😔";
+                
+                // Create hearts animation
+                createHearts();
+            } else {
+                resultText.textContent = "Aarush would have been a better choice 😢";
+                retryButton.classList.remove('hidden');
+            }
+            
+            // Make the result and follow-up visible with animation
+            setTimeout(() => {
+                resultText.style.opacity = 1;
+                
+                if (answer === 'ishansh' || answer === 'ishansh ') {
+                    setTimeout(() => {
+                        followUp.style.opacity = 1;
+                    }, 1000);
+                }
+            }, 500);
+        }
+        
+        function resetForm() {
+            const resultSection = document.getElementById('result-section');
+            const questionSection = document.getElementById('question-section');
+            const retryButton = document.getElementById('retry-button');
+            const loveAnswerInput = document.getElementById('love-answer');
+            
+            // Clear the input
+            loveAnswerInput.value = '';
+            
+            // Hide result section
+            resultSection.classList.add('hidden');
+            
+            // Show question section
+            questionSection.style.display = 'block';
+            
+            // Hide retry button
+            retryButton.classList.add('hidden');
+        }
+        
+        function createHearts() {
+            const container = document.querySelector('.container');
+            
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.classList.add('heart');
+                    
+                    // Random position at the bottom of the container
+                    const left = Math.random() * 100;
+                    heart.style.left = left + '%';
+                    heart.style.bottom = '-30px';
+                    
+                    container.appendChild(heart);
+                    
+                    // Animate the heart floating up
+                    setTimeout(() => {
+                        heart.style.opacity = '0.7';
+                        heart.style.bottom = '100%';
+                        heart.style.transition = 'bottom 3s ease, opacity 3s ease';
+                        
+                        // Remove the heart after animation completes
+                        setTimeout(() => {
+                            heart.remove();
+                        }, 3000);
+                    }, 100);
+                }, i * 300);
+            }
+        }
+    </script>
+</body>
+</html>
